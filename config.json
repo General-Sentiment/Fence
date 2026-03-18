@@ -6,6 +6,12 @@
       "matches": ["*://www.youtube.com/*"],
       "css": ["sites/youtube/style.css"],
       "js": ["sites/youtube/script.js"]
+    },
+    {
+      "name": "Instagram - Following Feed",
+      "enabled": true,
+      "matches": ["*://www.instagram.com/*"],
+      "js": ["sites/instagram/script.js"]
     }
   ]
 }
