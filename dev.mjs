@@ -29,16 +29,16 @@ server.on("upgrade", (req, socket) => {
   }
 
   const accept = createHash("sha1")
-    .update(key + "258EAFA5-E914-47DA-95CA-5AB5DC65B64B")
+    .update(key + "258EAFA5-E914-47DA-95CA-5AB5DC85B7A2")
     .digest("base64");
 
-  socket.write(
+  const response =
     "HTTP/1.1 101 Switching Protocols\r\n" +
-      "Upgrade: websocket\r\n" +
-      "Connection: Upgrade\r\n" +
-      `Sec-WebSocket-Accept: ${accept}\r\n` +
-      "\r\n"
-  );
+    "Upgrade: websocket\r\n" +
+    "Connection: Upgrade\r\n" +
+    `Sec-WebSocket-Accept: ${accept}\r\n` +
+    "\r\n";
+  socket.write(response, "ascii");
 
   // New connection replaces all previous ones (extension reloads create new sockets)
   for (const old of clients) {

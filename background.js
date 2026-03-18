@@ -27,7 +27,10 @@
       cleanup();
       schedule();
     };
-    socket.onerror = () => { socket?.close(); };
+    socket.onerror = () => {
+      if (!connected) console.info("[fence] Dev server not running. Run `node dev.mjs` for live reload.");
+      socket?.close();
+    };
   }
 
   function cleanup() {
@@ -130,6 +133,16 @@ chrome.webNavigation?.onBeforeNavigate?.addListener((details) => {
       redirectedTabs.add(details.tabId);
       chrome.tabs.update(details.tabId, {
         url: "https://www.youtube.com/feed/subscriptions",
+      });
+    }
+  }
+
+  // Instagram: redirect homepage to following feed once per tab
+  if (url.hostname === "www.instagram.com" && url.pathname === "/" && !url.search.includes("variant=following")) {
+    if (!redirectedTabs.has(details.tabId)) {
+      redirectedTabs.add(details.tabId);
+      chrome.tabs.update(details.tabId, {
+        url: "https://www.instagram.com/?variant=following",
       });
     }
   }

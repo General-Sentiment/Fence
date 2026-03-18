@@ -11,6 +11,7 @@
       "name": "Instagram - Following Feed",
       "enabled": true,
       "matches": ["*://www.instagram.com/*"],
+      "css": ["sites/instagram/style.css"],
       "js": ["sites/instagram/script.js"]
     }
   ]
