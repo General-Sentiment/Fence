@@ -1,0 +1,40 @@
+/* Hide Shorts shelf on home/search/subscriptions */
+ytd-rich-shelf-renderer[is-shorts],
+ytd-reel-shelf-renderer,
+ytd-rich-section-renderer:has(ytd-rich-shelf-renderer[is-shorts]) {
+  display: none !important;
+}
+
+/* Hide Shorts tab in sidebar/guide */
+ytd-guide-entry-renderer a[title="Shorts"],
+ytd-mini-guide-entry-renderer a[title="Shorts"] {
+  display: none !important;
+}
+
+/* Hide Shorts in search results */
+ytd-search ytd-reel-shelf-renderer {
+  display: none !important;
+}
+
+/* Hide Shorts badges and links in video listings */
+a[href*="/shorts/"] {
+  display: none !important;
+}
+
+/* Hide Shorts remixing button on watch page */
+ytd-reel-shelf-renderer.ytd-watch-next-secondary-results-renderer {
+  display: none !important;
+}
+
+/* Hide suggested/recommended videos sidebar and expand player to full width */
+#secondary {
+  display: none !important;
+}
+
+ytd-watch-flexy:not([fullscreen]) #columns,
+ytd-watch-flexy:not([fullscreen]) #primary,
+ytd-watch-flexy:not([fullscreen]) #primary-inner {
+  max-width: none !important;
+  flex: 1 !important;
+  overflow: hidden !important;
+}

@@ -1,0 +1,29 @@
+{
+  "manifest_version": 3,
+  "name": "Fence",
+  "version": "1.0.0",
+  "description": "Inject custom CSS and JS into websites",
+  "permissions": [
+    "scripting",
+    "activeTab",
+    "storage",
+    "webNavigation"
+  ],
+  "host_permissions": [
+    "<all_urls>"
+  ],
+  "icons": {
+    "16": "icons/icon16.png",
+    "48": "icons/icon48.png",
+    "128": "icons/icon128.png"
+  },
+  "background": {
+    "service_worker": "background.js"
+  },
+  "web_accessible_resources": [
+    {
+      "resources": ["config.json", "sites/*/*.css", "sites/*/*.js"],
+      "matches": ["<all_urls>"]
+    }
+  ]
+}
