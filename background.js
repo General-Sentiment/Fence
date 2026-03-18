@@ -127,14 +127,11 @@ chrome.webNavigation?.onBeforeNavigate?.addListener((details) => {
   if (details.frameId !== 0) return;
   const url = new URL(details.url);
 
-  // YouTube: redirect homepage to subscriptions once per tab
+  // YouTube: always redirect homepage to subscriptions
   if (url.hostname === "www.youtube.com" && url.pathname === "/") {
-    if (!redirectedTabs.has(details.tabId)) {
-      redirectedTabs.add(details.tabId);
-      chrome.tabs.update(details.tabId, {
-        url: "https://www.youtube.com/feed/subscriptions",
-      });
-    }
+    chrome.tabs.update(details.tabId, {
+      url: "https://www.youtube.com/feed/subscriptions",
+    });
   }
 
   // Instagram: redirect homepage to following feed once per tab
